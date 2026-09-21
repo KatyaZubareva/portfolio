@@ -1,66 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ekaterina Zubareva — designer portfolio">
-    <title>Ekaterina Zubareva</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ekaterina Zubareva — ML Engineer, Backend Developer, Computer Vision & AI.">
+  <title>Ekaterina Zubareva — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <main class="hero">
+  <div class="cursor-glow"></div>
 
-        <header class="topbar">
-            <div class="location">Moscow</div>
+  <header class="nav">
+    <a class="logo" href="#top">EZ<span>.</span></a>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    <a class="nav-contact" href="mailto:katyazubareva.mail@gmail.com">Let's talk <span>↗</span></a>
+  </header>
 
-            <div class="theme" aria-label="Theme">
-                <span>dark</span>
-                <span class="active">light</span>
-            </div>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-top reveal">
+        <span class="eyebrow">PORTFOLIO / 2026</span>
+        <span class="status"><i></i> Available for opportunities</span>
+      </div>
 
-            <div class="timezone">GMT + 3.00</div>
-        </header>
+      <div class="hero-title reveal">
+        <h1>Ekaterina<br><em>Zubareva.</em></h1>
+        <div class="hero-side">
+          <p>ML Engineer & Backend Developer building intelligent products, interfaces and interactive systems.</p>
+          <a href="#projects" class="circle-link" aria-label="View projects">↓</a>
+        </div>
+      </div>
 
-        <section class="name-photo" aria-label="Ekaterina Zubareva">
-            <div class="photo-inner">
-                <div class="photo-mask">
-                    <img
-                        src="images/name-tape.png"
-                        alt="Ekaterina Zubareva written with orange tape"
-                        class="name-image"
-                    >
-                </div>
-            </div>
-        </section>
+      <div class="hero-bottom reveal">
+        <span>Python · AI/ML · Backend · Computer Vision</span>
+        <span>ITMO University · Software Engineering</span>
+      </div>
+    </section>
 
-        <section class="bottom">
-            <nav class="navigation" aria-label="Main navigation">
-                <a href="#about" class="active">about</a>
-                <a href="#work">work</a>
-                <a href="#cv">cv</a>
-                <a href="#connect">connect</a>
-            </nav>
+    <section class="marquee-wrap">
+      <div class="marquee">
+        <span>AI & MACHINE LEARNING</span><b>✦</b>
+        <span>BACKEND DEVELOPMENT</span><b>✦</b>
+        <span>COMPUTER VISION</span><b>✦</b>
+        <span>INTERACTIVE SYSTEMS</span><b>✦</b>
+        <span>AI & MACHINE LEARNING</span><b>✦</b>
+        <span>BACKEND DEVELOPMENT</span><b>✦</b>
+      </div>
+    </section>
 
-            <div class="statement">
-                Design that<br>
-                thinks before it<br>
-                speaks.
-            </div>
+    <section class="intro section">
+      <div class="section-label">01 / ABOUT</div>
+      <div class="intro-content">
+        <h2>I build digital products where <span>technology</span> meets interaction.</h2>
+        <p>I work across ML, backend development, data and interactive systems. My projects combine practical engineering with product thinking, from personalized learning systems to real-time computer vision.</p>
+      </div>
+    </section>
 
-            <div class="statement">
-                Redefining<br>
-                what is<br>
-                possible.
-            </div>
+    <section id="projects" class="section projects">
+      <div class="section-head">
+        <div class="section-label">02 / SELECTED PROJECTS</div>
+        <span>03 projects</span>
+      </div>
 
-            <button class="round-icon" type="button" aria-label="Open menu">
-                <img src="images/Ellipse.svg" alt="">
-            </button>
-        </section>
+      <article class="project project-dark reveal">
+        <div class="project-number">01</div>
+        <div class="project-info">
+          <div>
+            <span class="project-type">COMPUTER VISION · GAME</span>
+            <h3>Interactive<br>Tracking Game</h3>
+          </div>
+          <p>A non-VR interactive game using real-time motion tracking. The project connects computer vision, game logic and a custom wireless controller.</p>
+          <div class="tags"><span>Python</span><span>MediaPipe</span><span>Unreal Engine</span><span>Arduino</span></div>
+        </div>
+        <div class="project-visual sword-visual">
+          <div class="orb"></div>
+          <div class="sword-line"></div>
+          <span>REAL-TIME<br>TRACKING</span>
+        </div>
+      </article>
 
-    </main>
+      <article class="project project-light reveal">
+        <div class="project-number">02</div>
+        <div class="project-info">
+          <div>
+            <span class="project-type">AI · PRODUCT</span>
+            <h3>Medical<br>AI Assistant</h3>
+          </div>
+          <p>An AI service concept for working with medical knowledge and user queries. Information retrieval is built around a RAG approach.</p>
+          <div class="tags"><span>Python</span><span>NLP</span><span>RAG</span><span>LLM</span><span>API</span></div>
+        </div>
+        <div class="project-visual medical-visual">
+          <div class="medical-card">
+            <small>AI ASSISTANT</small>
+            <strong>Knowledge<br>retrieval</strong>
+            <div class="scan"></div>
+          </div>
+        </div>
+      </article>
 
-    <script src="script.js"></script>
+      <article class="project project-orange reveal">
+        <div class="project-number">03</div>
+        <div class="project-info">
+          <div>
+            <span class="project-type">DEVELOPER TOOL · PLATFORM</span>
+            <h3>Frontend<br>Prototyping</h3>
+          </div>
+          <p>A modular platform for rapidly creating frontend applications with reusable UI components, API integration and automated deployment.</p>
+          <div class="tags"><span>Python</span><span>API</span><span>Docker</span><span>CI/CD</span><span>Git</span></div>
+        </div>
+        <div class="project-visual code-visual">
+          <div class="code-window">
+            <span>01</span><span>02</span><span>03</span><span>04</span>
+            <code><b>component</b>(<i>"Button"</i>)<br>  → reusable<br>  → scalable<br>  → deploy</code>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="experience" class="section experience">
+      <div class="section-label">03 / EXPERIENCE</div>
+      <div class="timeline">
+        <div class="job reveal">
+          <div class="date">05.2025 — 06.2026</div>
+          <div class="job-main">
+            <span>01</span>
+            <h3>ML Engineer</h3>
+            <p class="company">Shunli App</p>
+            <p>Developed ML components that adapt learning to user actions and results. Worked with interaction data, response analysis, NLP for Chinese text, personalized recommendations and API integration with backend systems.</p>
+          </div>
+        </div>
+        <div class="job reveal">
+          <div class="date">03.2025 — 08.2025</div>
+          <div class="job-main">
+            <span>02</span>
+            <h3>AI/ML Evaluation Specialist</h3>
+            <p class="company">Skolkovo Institute</p>
+            <p>Created test tasks and evaluation datasets for AI models, structured data for response-quality assessment and analyzed large datasets.</p>
+          </div>
+        </div>
+        <div class="job reveal">
+          <div class="date">04.2022 — 08.2023</div>
+          <div class="job-main">
+            <span>03</span>
+            <h3>Backend Developer</h3>
+            <p class="company">ITMO University</p>
+            <p>Built an interactive Telegram bot with Python, FastAPI and python-telegram-bot. Implemented commands, notifications, learning materials, SQL/PostgreSQL, Docker and CI/CD.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section skills">
+      <div class="section-label">04 / TOOLKIT</div>
+      <div class="skills-grid">
+        <div class="skill-block reveal">
+          <span>01</span>
+          <h3>Backend</h3>
+          <p>Python · FastAPI · REST API · HTTP · JSON</p>
+        </div>
+        <div class="skill-block reveal">
+          <span>02</span>
+          <h3>Data & ML</h3>
+          <p>NumPy · Pandas · NLP · RAG · LLM · embeddings · data preparation</p>
+        </div>
+        <div class="skill-block reveal">
+          <span>03</span>
+          <h3>Databases</h3>
+          <p>PostgreSQL · SQL</p>
+        </div>
+        <div class="skill-block reveal">
+          <span>04</span>
+          <h3>DevOps & Tools</h3>
+          <p>Docker · Git · CI/CD · Linux CLI</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="education section">
+      <div class="section-label">05 / EDUCATION</div>
+      <div class="education-row reveal">
+        <div>
+          <span>2021 — 2026</span>
+          <h2>ITMO University</h2>
+        </div>
+        <p>Software Engineering</p>
+      </div>
+    </section>
+
+    <section class="contact section">
+      <div class="contact-inner reveal">
+        <span class="eyebrow">HAVE A PROJECT IN MIND?</span>
+        <h2>Let's make<br><em>something useful.</em></h2>
+        <a class="big-mail" href="mailto:katyazubareva.mail@gmail.com">katyazubareva.mail@gmail.com <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Ekaterina Zubareva</span>
+    <div>
+      <a href="https://github.com/KatyaZubareva" target="_blank">GitHub ↗</a>
+      <a href="https://katyazubareva.github.io/" target="_blank">Portfolio ↗</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

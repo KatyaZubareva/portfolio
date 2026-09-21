@@ -1,28 +1,38 @@
-const photo = document.querySelector(".photo-inner");
+const glow = document.querySelector('.cursor-glow');
 
-if (photo && window.matchMedia("(pointer: fine)").matches) {
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
+window.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
 
-    window.addEventListener("mousemove", (event) => {
-        const x = event.clientX / window.innerWidth - 0.5;
-        const y = event.clientY / window.innerHeight - 0.5;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
 
-        targetX = x * 4;
-        targetY = y * 4;
-    });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    function animatePhoto() {
-        currentX += (targetX - currentX) * 0.045;
-        currentY += (targetY - currentY) * 0.045;
+document.querySelectorAll('.project').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const visual = card.querySelector('.project-visual');
+    if (visual) visual.style.transform = `translate(${x * 8}px, ${y * 8}px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    const visual = card.querySelector('.project-visual');
+    if (visual) visual.style.transform = '';
+  });
+});
 
-        photo.style.transform =
-            `translate3d(${currentX}px, ${currentY}px, 0)`;
-
-        requestAnimationFrame(animatePhoto);
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
     }
-
-    animatePhoto();
-}
+  });
+});
