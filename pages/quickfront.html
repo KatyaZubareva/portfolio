@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Indor — Ekaterina Zubareva</title>
+  <title>QuickFront — Ekaterina Zubareva</title>
 
   <meta
     name="description"
-    content="Indor — ML case study by Ekaterina Zubareva."
+    content="QuickFront — ML case study by Ekaterina Zubareva."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -401,7 +401,8 @@
       background: #e9e9ed;
     }
 
-    .hero-image img {
+    .hero-image img,
+    .hero-image video {
       width: 100%;
       height: 100%;
 
@@ -413,7 +414,19 @@
         transform 1s cubic-bezier(.2,.8,.2,1);
     }
 
-    .hero-image:hover img {
+    /* Videos keep the box of the original screenshot (1600 × 1333). */
+
+    .hero-image video,
+    .full-image video {
+      display: block;
+
+      height: auto;
+
+      aspect-ratio: 1600 / 1333;
+    }
+
+    .hero-image:hover img,
+    .hero-image:hover video {
       transform: scale(1.025);
     }
 
@@ -649,7 +662,8 @@
       background: #e9e9ed;
     }
 
-    .full-image img {
+    .full-image img,
+    .full-image video {
       width: 100%;
 
       height: auto;
@@ -662,7 +676,8 @@
         transform .8s cubic-bezier(.2,.8,.2,1);
     }
 
-    .full-image:hover img {
+    .full-image:hover img,
+    .full-image:hover video {
       transform: scale(1.015);
     }
 
@@ -1156,6 +1171,7 @@
       }
 
       .hero-image img,
+      .hero-image video,
       .image-placeholder {
         min-height: 440px;
       }
@@ -1206,7 +1222,8 @@
         border-radius: 25px;
       }
 
-      .full-image img {
+      .full-image img,
+      .full-image video {
         min-height: 430px;
       }
 
@@ -1378,10 +1395,10 @@
 
             <h1 class="project-title">
 
-              Indor
+              Quick
 
               <span>
-                Interior
+                Front
               </span>
 
             </h1>
@@ -1393,10 +1410,10 @@
 
             <p class="project-intro-text">
 
-              An interior platform that
-              matches people with designers
-              using image embeddings and
-              a learned style recommender.
+              A web app that turns a short
+              project brief into a ready
+              frontend starter, guided by
+              an LLM that picks the stack.
 
             </p>
 
@@ -1423,7 +1440,7 @@
                 </div>
 
                 <div class="meta-value">
-                  CV · RecSys · Embeddings
+                  LLM · GigaChat · Codegen
                 </div>
 
               </div>
@@ -1437,10 +1454,15 @@
 
         <div class="hero-image">
 
-          <img
-            src="../assets/indor_cover.jpg"
-            alt="Medixy health assistant interface"
-          >
+          <video
+            src="../assets/quickfront.mp4?v=2"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="QuickFront demo"
+          ></video>
 
         </div>
 
@@ -1468,11 +1490,11 @@
 
           <p class="overview-text">
 
-            Building a style recommender
+            Building an LLM project wizard
             around
 
             <span>
-              taste, images and relevance.
+              stacks, features and code.
             </span>
 
           </p>
@@ -1512,11 +1534,11 @@
 
             <p class="text-large">
 
-              Finding your style
+              Starting a project
               shouldn't feel like
 
               <span>
-                endless scrolling
+                a week of setup
               </span>
 
               and guessing.
@@ -1530,19 +1552,19 @@
 
             <p>
 
-              People rarely know the name
-              of the style they like, so text
-              search and filters fail them,
-              though the catalog has a match.
+              Developers lose hours picking
+              a framework, wiring up tooling
+              and copying configs, before
+              they write a single feature.
 
             </p>
 
             <p>
 
               The goal was to build a
-              recommender that learns taste
-              from the images people save and
-              suggests designers who fit it.
+              wizard where an LLM asks the
+              right questions, recommends a
+              stack and generates the code.
 
             </p>
 
@@ -1592,10 +1614,10 @@
 
             <p class="text-large">
 
-              Fewer filters.
+              Fewer decisions.
 
               <span>
-                Better matches.
+                Faster starts.
               </span>
 
             </p>
@@ -1607,17 +1629,17 @@
 
             <p>
 
-              Instead of asking for keywords,
-              the system learns from what users
-              save, like and skip.
+              Instead of a blank prompt, the
+              wizard walks users through six
+              short, focused steps.
 
             </p>
 
             <p>
 
-              Every project image is embedded
-              with a CLIP-style vision model,
-              so similar rooms sit together.
+              At each step the context so far
+              is packed into a structured prompt
+              so answers stay on topic.
 
             </p>
 
@@ -1692,11 +1714,11 @@
 
             <p class="text-large">
 
-              Visual similarity
+              Guided generation
               for a
 
               <span>
-                subjective task.
+                developer tool.
               </span>
 
             </p>
@@ -1708,19 +1730,19 @@
 
             <p>
 
-              Image embeddings feed a two-tower
-              model that ranks projects and
-              designers for each user, then a
-              diversity step avoids repeats.
+              GigaChat answers are rate-limited
+              and cached in Redis, while a
+              generator service turns the plan
+              into a downloadable template.
 
             </p>
 
             <p>
 
-              Offline evaluation tracked
-              recall and NDCG, and an A/B
-              test measured saves and contact
-              requests.
+              GitHub integration can push
+              the generated project straight
+              into a new repository, ready
+              to run.
 
             </p>
 
@@ -1788,11 +1810,11 @@
 
             <p class="text-large">
 
-              Visual similarity
+              Guided generation
               for a
 
               <span>
-                subjective task.
+                developer tool.
               </span>
 
             </p>
@@ -1804,19 +1826,19 @@
 
             <p>
 
-              Image embeddings feed a two-tower
-              model that ranks projects and
-              designers for each user, then a
-              diversity step avoids repeats.
+              GigaChat answers are rate-limited
+              and cached in Redis, while a
+              generator service turns the plan
+              into a downloadable template.
 
             </p>
 
             <p>
 
-              Offline evaluation tracked
-              recall and NDCG, and an A/B
-              test measured saves and contact
-              requests.
+              GitHub integration can push
+              the generated project straight
+              into a new repository, ready
+              to run.
 
             </p>
 
@@ -1975,7 +1997,7 @@
 
           <h2 class="results-title">
 
-            Personal
+            Ready
 
             <br>
 
@@ -1993,8 +2015,8 @@
           <p class="results-text">
 
             The final system brings
-            image search, style embeddings
-            and personal recommendations
+            LLM guidance, code generation
+            and GitHub integration
             into one coherent experience.
 
             <br>
@@ -2002,8 +2024,8 @@
 
             The main engineering rule remained
             consistent throughout the project:
-            show relevant ideas without hiding
-            variety.
+            save setup time without hiding
+            choices.
 
           </p>
 
@@ -2024,10 +2046,15 @@
 
         <div class="full-image">
 
-          <img
-            src="../assets/indor_cover.jpg"
-            alt="Medixy final product"
-          >
+          <video
+            src="../assets/quickfront.mp4?v=2"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="QuickFront demo"
+          ></video>
 
         </div>
 

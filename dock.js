@@ -21,8 +21,8 @@
       icon: "assets/Medixy_icon.png"
     },
     {
-      name: "Indor",
-      href: "pages/indor-design.html",
+      name: "QuickFront",
+      href: "pages/quickfront.html",
       icon: "assets/QuickFront_icon.png"
     },
     {

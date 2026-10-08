@@ -782,23 +782,9 @@
       --card-fg: #fff;
     }
 
-    /* Indor: website screenshot as a framed screen. */
-
-    .project-indor {
-      --card-bg: #fff;
-    }
-
-    .project-indor .project-media {
-      inset: 17% 8% auto;
-
-      width: 84%;
-      height: 50%;
-
-      object-position: 50% 0;
-
-      border-radius: 14px;
-
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .07);
+    .project-quickfront {
+      --card-bg: #0d0e10;
+      --card-fg: #fff;
     }
 
     .project-sword {
@@ -902,6 +888,7 @@
     /* Light text on dark cards. */
 
     .project-medixy .project-description,
+    .project-quickfront .project-description,
     .project-sword .project-description,
     .project-shunli .project-description {
       color: rgba(255, 255, 255, .66);
@@ -909,6 +896,8 @@
 
     .project-medixy .project-index,
     .project-medixy .project-type,
+    .project-quickfront .project-index,
+    .project-quickfront .project-type,
     .project-sword .project-index,
     .project-sword .project-type,
     .project-shunli .project-index,
@@ -1668,20 +1657,24 @@
         </article>
 
 
-        <!-- INDOR -->
+        <!-- QUICKFRONT -->
 
         <article class="project reveal">
 
-          <a href="pages/indor-design.html">
+          <a href="pages/quickfront.html">
 
-            <div class="project-card project-indor">
+            <div class="project-card project-quickfront">
 
-              <img
+              <video
                 class="project-media"
-                src="assets/indor_cover.jpg"
-                alt=""
-                loading="lazy"
-              >
+                src="assets/quickfront.mp4?v=2"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              ></video>
 
               <div class="project-content">
 
@@ -1692,7 +1685,7 @@
                   </div>
 
                   <div class="project-type">
-                    RecSys · CV
+                    LLM · Codegen
                   </div>
 
                 </div>
@@ -1701,11 +1694,11 @@
                 <div class="project-bottom">
 
                   <h3 class="project-name">
-                    Indor
+                    QuickFront
                   </h3>
 
                   <p class="project-description">
-                    Style recommender built on image embeddings.
+                    LLM assistant that generates web projects.
                   </p>
 
                 </div>
