@@ -1,9 +1,13 @@
 /* =========================================================
    PROJECT DOCK — shared by all project pages
 
-   Usage on a page:
-     <link rel="stylesheet" href="/dock.css">
-     <script src="/dock.js" defer></script>
+   Usage on a page (paths relative to that page):
+     <link rel="stylesheet" href="../dock.css">
+     <script src="../dock.js" defer></script>
+
+   Links and icons are resolved against the folder this script
+   lives in (the site root), so the dock works on any host,
+   including a GitHub Pages sub-path like /portfolio/.
 
    To add a project to the dock, add it to DOCK_PROJECTS.
 ========================================================= */
@@ -13,18 +17,18 @@
   const DOCK_PROJECTS = [
     {
       name: "Medixy",
-      href: "/pages/medixy.html",
-      icon: "/assets/Medixy_icon.png"
+      href: "pages/medixy.html",
+      icon: "assets/Medixy_icon.png"
     },
     {
       name: "Indor",
-      href: "/pages/indor-design.html",
-      icon: "/assets/04-Free.png"
+      href: "pages/indor-design.html",
+      icon: "assets/04-Free.png"
     },
     {
       name: "Motion Sword",
-      href: "/pages/motion-sword.html",
-      icon: "/assets/03-Free.png"
+      href: "pages/motion-sword.html",
+      icon: "assets/03-Free.png"
     }
   ];
 
@@ -33,22 +37,28 @@
      RENDER
   ========================================================= */
 
-  const currentPath =
-    window.location.pathname.replace(/\/$/, "");
+  const siteRoot =
+    new URL("./", document.currentScript.src);
+
+  const resolve =
+    path => new URL(path, siteRoot).href;
 
   function dockItem({ name, href, icon }, extraClass = "") {
 
+    const url =
+      resolve(href);
+
     const current =
-      currentPath.endsWith(href);
+      new URL(url).pathname === window.location.pathname;
 
     return `
       <a
         class="dock-item ${extraClass} ${current ? "current" : ""}"
-        href="${href}"
+        href="${url}"
         aria-label="${name}"
         ${current ? 'aria-current="page"' : ""}
       >
-        <img src="${icon}" alt="" draggable="false">
+        <img src="${resolve(icon)}" alt="" draggable="false">
         <span class="dock-tooltip">${name}</span>
       </a>
     `;
@@ -64,8 +74,8 @@
     ${dockItem(
       {
         name: "Home",
-        href: "/index.html",
-        icon: "/assets/Home_icon.png"
+        href: "index.html",
+        icon: "assets/Home_icon.png"
       },
       "dock-home"
     )}
