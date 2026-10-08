@@ -80,18 +80,15 @@
 
   border-radius: 24%;
 
-  background: #2a2a2d;
-
-  box-shadow:
-    0 calc(var(--s) * 10px) calc(var(--s) * 22px)
-      rgba(0, 0, 0, calc(var(--s) * .28));
+  /* No background: the icons have their own rounded,
+     transparent corners, and a dark tile behind them
+     showed through as a thin black outline. */
 
   -webkit-tap-highlight-color: transparent;
 
   transition:
     width .2s cubic-bezier(.25, 1, .5, 1),
-    height .2s cubic-bezier(.25, 1, .5, 1),
-    box-shadow .2s ease;
+    height .2s cubic-bezier(.25, 1, .5, 1);
 }
 
 .dock-item img {
@@ -102,7 +99,16 @@
 
   object-fit: cover;
 
-  border-radius: inherit;
+  /* Shadow follows the icon's own shape. */
+  --icon-shadow:
+    drop-shadow(
+      0 calc(var(--s) * 10px) calc(var(--s) * 11px)
+      rgba(0, 0, 0, calc(var(--s) * .28))
+    );
+
+  filter: var(--icon-shadow);
+
+  transition: filter .2s ease;
 
   pointer-events: none;
   user-select: none;
@@ -110,7 +116,7 @@
 }
 
 .dock-item:active img {
-  filter: brightness(.8);
+  filter: brightness(.8) var(--icon-shadow);
 }
 
 .dock-item:focus-visible {
