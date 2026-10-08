@@ -23,12 +23,12 @@
     {
       name: "Indor",
       href: "pages/indor-design.html",
-      icon: "assets/04-Free.png"
+      icon: "assets/QuickFront_icon.png"
     },
     {
       name: "Motion Sword",
       href: "pages/motion-sword.html",
-      icon: "assets/03-Free.png"
+      icon: "assets/EchoBlade_icon.png"
     }
   ];
 
