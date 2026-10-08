@@ -1404,13 +1404,13 @@
     @media (max-width: 480px) {
 
       .nav {
-        width:
+        width: max-content;
+
+        max-width:
           calc(100% - 24px);
       }
 
       .nav-links {
-        width: 100%;
-
         justify-content: center;
       }
 
@@ -1613,6 +1613,7 @@
               <video
                 class="project-media"
                 src="assets/Medixy_anim.mov"
+                poster="assets/posters/medixy.jpg"
                 autoplay
                 muted
                 loop
@@ -1668,6 +1669,7 @@
               <video
                 class="project-media"
                 src="assets/quickfront.mp4?v=2"
+                poster="assets/posters/quickfront.jpg"
                 autoplay
                 muted
                 loop
@@ -1723,6 +1725,7 @@
               <video
                 class="project-media"
                 src="assets/motion_sword.mp4?v=2"
+                poster="assets/posters/motion_sword.jpg"
                 autoplay
                 muted
                 loop
@@ -2820,6 +2823,8 @@
     }
 
   </script>
+
+  <script src="media.js" defer></script>
 
 </body>
 </html>

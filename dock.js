@@ -37,8 +37,12 @@
      RENDER
   ========================================================= */
 
+  const script =
+    document.currentScript ||
+    document.querySelector('script[src*="dock.js"]');
+
   const siteRoot =
-    new URL("./", document.currentScript.src);
+    new URL("./", script ? script.src : window.location.href);
 
   const resolve =
     path => new URL(path, siteRoot).href;
@@ -83,10 +87,6 @@
   `;
 
   document.body.appendChild(dock);
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => dock.classList.add("ready"));
-  });
 
 
   /* =========================================================
