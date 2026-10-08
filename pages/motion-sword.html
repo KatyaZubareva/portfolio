@@ -20,8 +20,8 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="../dock.css?v=4">
-  <script src="../dock.js?v=4" defer></script>
+  <link rel="stylesheet" href="../dock.css?v=6">
+  <script src="../dock.js?v=6" defer></script>
 
   <style>
 
@@ -401,7 +401,8 @@
       background: #e9e9ed;
     }
 
-    .hero-image img {
+    .hero-image img,
+    .hero-image video {
       width: 100%;
       height: 100%;
 
@@ -413,7 +414,18 @@
         transform 1s cubic-bezier(.2,.8,.2,1);
     }
 
-    .hero-image:hover img {
+    /* Same box as the original hero photo (2880 × 1782). */
+
+    .hero-image video {
+      display: block;
+
+      height: auto;
+
+      aspect-ratio: 2880 / 1782;
+    }
+
+    .hero-image:hover img,
+    .hero-image:hover video {
       transform: scale(1.025);
     }
 
@@ -1156,6 +1168,7 @@
       }
 
       .hero-image img,
+      .hero-image video,
       .image-placeholder {
         min-height: 440px;
       }
@@ -1437,10 +1450,15 @@
 
         <div class="hero-image">
 
-          <img
-            src="../assets/Medixy_photo1.png"
-            alt="Medixy health assistant interface"
-          >
+          <video
+            src="../assets/motion_sword.mp4?v=2"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Motion Sword gameplay"
+          ></video>
 
         </div>
 
