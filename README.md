@@ -1,81 +1,25 @@
-# Ekaterina Zubareva — Portfolio
+# Graphic Designer Portfolio
 
-Personal portfolio website showcasing my experience and projects in **AI/ML, backend development, computer vision, and interactive systems**.
+A static, responsive portfolio website ready for GitHub Pages.
 
-The website presents selected projects, professional experience, technical skills, education, and contact information.
+## Edit Your Details
 
-## About
+Open `index.html` and replace:
 
-I am a Software Engineering student at **ITMO University** with experience in:
+- `Ekaterina Zubareva` with your preferred display name
+- `hello@example.com` with your real email
+- Behance and Instagram links with your profiles
+- Project titles and descriptions with your real work
+- Images inside `assets/` with screenshots or photos of your own projects
 
-* Machine Learning and AI
-* Backend development
-* Computer Vision
-* NLP and LLM-based applications
-* Data preparation and evaluation
-* API development
-* Interactive systems
+## Publish On GitHub Pages
 
-My work combines software engineering with AI and user-focused digital products.
+1. Create a new GitHub repository.
+2. Upload `index.html`, `styles.css`, `script.js`, `README.md`, and the `assets` folder.
+3. In GitHub, open the repository settings.
+4. Go to `Pages`.
+5. Set source to `Deploy from a branch`.
+6. Choose the `main` branch and `/root`.
+7. Save. GitHub will show your live website URL.
 
-## Featured Projects
-
-### Interactive Tracking Game
-
-A non-VR interactive game using real-time motion tracking and a custom wireless controller.
-
-**Technologies:** Python · Computer Vision · MediaPipe · Unreal Engine · Arduino
-
-### Medical AI Assistant
-
-An AI service concept for working with medical knowledge and user queries using retrieval-augmented generation.
-
-**Technologies:** Python · NLP · RAG · LLM · API
-
-### Frontend Prototyping Platform
-
-A modular platform for rapidly creating frontend applications with reusable UI components, API integration, and automated deployment.
-
-**Technologies:** Python · API · Docker · CI/CD · Git
-
-## Tech Stack
-
-**Languages**
-
-Python · JavaScript · SQL
-
-**Backend**
-
-FastAPI · REST API · HTTP · JSON
-
-**AI / ML**
-
-NumPy · Pandas · NLP · RAG · LLM · Embeddings · Data Preparation
-
-**Databases**
-
-PostgreSQL · SQL
-
-**DevOps & Tools**
-
-Docker · Git · CI/CD · Linux
-
-**Computer Vision**
-
-MediaPipe · Real-time Tracking
-
-## 🎓 Education
-
-**ITMO University**
-Software Engineering
-2021 — 2026
-
-## 🔗 Links
-
-* **Portfolio:** https://katyazubareva.github.io/
-* **GitHub:** https://github.com/KatyaZubareva
-* **Email:** [katyazubareva.mail@gmail.com](mailto:katyazubareva.mail@gmail.com)
-
----
-
-Built with HTML, CSS and JavaScript.
+No build command is needed.

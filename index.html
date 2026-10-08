@@ -3,214 +3,2663 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ekaterina Zubareva — ML Engineer, Backend Developer, Computer Vision & AI.">
-  <title>Ekaterina Zubareva — Portfolio</title>
+
+  <title>Ekaterina Zubareva — ML Engineer</title>
+
+  <meta
+    name="description"
+    content="Ekaterina Zubareva — ML Engineer working across NLP, LLM systems and computer vision."
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <script>
+    document.documentElement.classList.add("js-intro");
+  </script>
+
+  <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f5f7;
+      color: #111;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Inter",
+        "SF Pro Display",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    section[id] {
+      scroll-margin-top: 90px;
+    }
+
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --bg: #f5f5f7;
+      --white: #fff;
+      --black: #111;
+      --gray: #6e6e73;
+      --soft-gray: #a1a1a6;
+      --line: rgba(0, 0, 0, .08);
+
+      --radius: 34px;
+      --max: 1380px;
+    }
+
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    .container {
+      width: min(
+        var(--max),
+        calc(100% - 48px)
+      );
+
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 150px 0;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: .01em;
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+       
+       В начале:
+       только текст.
+
+       После scroll:
+       glass-плашка появляется плавно.
+    ========================================================= */
+
+    .nav {
+      position: fixed;
+      z-index: 100;
+
+      top: 20px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        translateY(-6px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: max-content;
+      height: 50px;
+
+      padding: 4px;
+
+      border-radius: 999px;
+
+      /*
+        Начальное состояние:
+        полностью прозрачное.
+      */
+      background: transparent;
+      border: 1px solid transparent;
+      box-shadow: none;
+
+      /*
+        Важно:
+        backdrop-filter тоже скрыт в начале.
+      */
+      backdrop-filter: blur(0);
+      -webkit-backdrop-filter: blur(0);
+
+      opacity: .92;
+
+      transition:
+        background .5s cubic-bezier(.22, 1, .36, 1),
+        border-color .5s cubic-bezier(.22, 1, .36, 1),
+        box-shadow .5s cubic-bezier(.22, 1, .36, 1),
+        backdrop-filter .5s cubic-bezier(.22, 1, .36, 1),
+        -webkit-backdrop-filter .5s cubic-bezier(.22, 1, .36, 1),
+        transform .5s cubic-bezier(.22, 1, .36, 1),
+        opacity .5s ease;
+    }
+
+
+    /*
+      Состояние после начала прокрутки.
+    */
+
+    .nav.scrolled {
+      transform:
+        translateX(-50%)
+        translateY(0);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, .86),
+          rgba(255, 255, 255, .68)
+        );
+
+      backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+      -webkit-backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+      border-color:
+        rgba(255, 255, 255, .82);
+
+      box-shadow:
+        0 12px 35px rgba(0, 0, 0, .07),
+        inset 0 1px 0 rgba(255, 255, 255, .95),
+        inset 0 -1px 0 rgba(0, 0, 0, .035);
+
+      opacity: 1;
+    }
+
+
+    /*
+      Блик стеклянной плашки.
+      В начале его нет.
+    */
+
+    .nav::before {
+      content: "";
+
+      position: absolute;
+      inset: 1px;
+
+      border-radius: inherit;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255, 255, 255, .72),
+          transparent 42%
+        );
+
+      opacity: 0;
+
+      transition:
+        opacity .5s ease;
+    }
+
+    .nav.scrolled::before {
+      opacity: .55;
+    }
+
+
+    .nav-links {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      gap: 2px;
+      height: 100%;
+    }
+
+
+    /* =========================================================
+       ACTIVE CAPSULE
+    ========================================================= */
+
+    .nav-active {
+      position: absolute;
+
+      z-index: 0;
+
+      top: 3px;
+      left: 0;
+
+      height: calc(100% - 6px);
+
+      border-radius: 999px;
+
+      background: #111;
+
+      box-shadow:
+        0 3px 10px rgba(0, 0, 0, .13),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transform: translateX(0);
+
+      transition:
+        transform .42s cubic-bezier(.22, 1, .36, 1),
+        width .35s cubic-bezier(.22, 1, .36, 1),
+        opacity .18s ease;
+    }
+
+
+    /* =========================================================
+       NAV LINKS
+    ========================================================= */
+
+    .nav-links a {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 42px;
+
+      padding: 0 15px;
+
+      border-radius: 999px;
+
+      color: #68686d;
+
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+
+      white-space: nowrap;
+
+      transition:
+        color .25s ease,
+        transform .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #111;
+    }
+
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-links a:active {
+      transform: scale(.96);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+
+      width: 100%;
+      height: 100svh;
+
+      min-height: 620px;
+
+      display: grid;
+      place-items: center;
+
+      padding: 0;
+
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 700px;
+      height: 500px;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255, 255, 255, .95) 0%,
+          rgba(255, 255, 255, .6) 38%,
+          rgba(255, 255, 255, 0) 72%
+        );
+
+      filter: blur(35px);
+
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .hero-content {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    /* =========================================================
+       HERO TITLE
+    ========================================================= */
+
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      font-size:
+        clamp(62px, 11.5vw, 168px);
+
+      line-height: .80;
+
+      letter-spacing: -.085em;
+
+      font-weight: 600;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+    }
+
+    .hero-title > span {
+      display: block;
+    }
+
+    .hero-title > span:last-child {
+      color: #c6c6cb;
+    }
+
+
+    /* =========================================================
+       HERO INTRO
+
+       Two layers, like the reference video:
+       1. letters sweep in left to right, fast and faint;
+       2. the whole line then slowly darkens and sharpens.
+       The name lines and the note are split into letters by
+       the HERO INTRO script; .js-intro (set in <head>) hides
+       them until they are split, so there is no flash.
+    ========================================================= */
+
+    .js-intro .hero-title > span:not(.is-split),
+    .js-intro .hero-note:not(.is-split),
+    .js-intro .resume-button {
+      opacity: 0;
+    }
+
+    .intro-line.is-split {
+      animation:
+        heroLineSettle 2.1s cubic-bezier(.33, 0, .2, 1) both;
+
+      animation-delay:
+        calc(var(--line-delay, 0s) + .12s);
+    }
+
+    .intro-line .char {
+      display: inline-block;
+
+      animation:
+        heroCharSweep .5s ease-out both;
+
+      animation-delay:
+        calc(var(--line-delay, 0s) + var(--i) / var(--n) * .32s);
+    }
+
+    /* Line order: first name, last name, note. */
+
+    .hero-title > span:nth-child(2) {
+      --line-delay: .2s;
+    }
+
+    .hero-note {
+      --line-delay: .4s;
+    }
+
+    @keyframes heroCharSweep {
+      from {
+        opacity: 0;
+        filter: blur(.08em);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroLineSettle {
+      from {
+        opacity: .26;
+        filter: blur(.045em);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    .js-intro .resume-button {
+      animation:
+        heroFadeIn 1.2s cubic-bezier(.33, 0, .2, 1) .9s forwards;
+    }
+
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        filter: blur(6px);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .js-intro .intro-line,
+      .js-intro .hero-note,
+      .js-intro .resume-button,
+      .intro-line .char {
+        opacity: 1;
+        filter: none;
+        animation: none;
+      }
+    }
+
+
+    /* =========================================================
+       RESUME BUTTON
+    ========================================================= */
+
+    .resume-button {
+      margin-top: 34px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 10px;
+
+      min-width: 150px;
+      height: 48px;
+
+      padding: 0 20px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #2a2a2c 0%,
+          #111 100%
+        );
+
+      color: #fff;
+
+      font-size: 13px;
+      font-weight: 500;
+
+      letter-spacing: -.01em;
+
+      box-shadow:
+        0 8px 18px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.18),
+        inset 0 -2px 0 rgba(0,0,0,.28);
+
+      border: 1px solid rgba(0,0,0,.18);
+
+      transition:
+        transform .22s cubic-bezier(.2,.8,.2,1),
+        box-shadow .22s ease,
+        background .22s ease;
+    }
+
+    .resume-button span {
+      font-size: 16px;
+      line-height: 1;
+
+      transition:
+        transform .22s ease;
+    }
+
+    .resume-button:hover {
+      transform: translateY(-3px);
+
+      background:
+        linear-gradient(
+          180deg,
+          #333 0%,
+          #151515 100%
+        );
+
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.2),
+        inset 0 -2px 0 rgba(0,0,0,.28);
+    }
+
+    .resume-button:hover span {
+      transform: translateY(2px);
+    }
+
+    .resume-button:active {
+      transform:
+        translateY(1px)
+        scale(.97);
+
+      box-shadow:
+        0 4px 9px rgba(0,0,0,.16),
+        inset 0 2px 3px rgba(0,0,0,.24);
+    }
+
+
+    /* =========================================================
+       HERO NOTE
+    ========================================================= */
+
+    .hero-note {
+      margin-top: 42px;
+
+      color: var(--gray);
+
+      font-size:
+        clamp(15px, 1.4vw, 18px);
+
+      line-height: 1.3;
+
+      letter-spacing: -.025em;
+    }
+
+
+    /* =========================================================
+       HERO BOTTOM LINK
+    ========================================================= */
+
+    .hero-next {
+      position: absolute;
+
+      left: 50%;
+      bottom: 28px;
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      color: var(--gray);
+
+      font-size: 11px;
+      font-weight: 500;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+    }
+
+    .hero-next span {
+      font-size: 15px;
+      line-height: 1;
+
+      transition:
+        transform .25s ease;
+    }
+
+    .hero-next:hover {
+      color: #111;
+    }
+
+    .hero-next:hover span {
+      transform: translateY(3px);
+    }
+
+
+    /* =========================================================
+       WORK
+    ========================================================= */
+
+    .projects {
+      padding-top: 100px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      margin-bottom: 45px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -.055em;
+    }
+
+    .section-number {
+      color: var(--gray);
+      font-size: 20px;
+    }
+
+
+    /* =========================================================
+       PROJECTS — Apple-style tiles, two in a row
+
+       Solid tile colour, title + subtitle + pill centered
+       at the top, the project photo / video fills the rest.
+    ========================================================= */
+
+    .projects-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 14px;
+    }
+
+    .project-tile {
+      position: relative;
+
+      height:
+        clamp(520px, 46vw, 640px);
+
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 52px 24px 0;
+
+      border-radius: 28px;
+
+      background: var(--tile-bg, #fff);
+      color: var(--tile-fg, #1d1d1f);
+
+      text-align: center;
+
+      isolation: isolate;
+    }
+
+    .project-tile-text {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .project-tile-name {
+      font-size:
+        clamp(34px, 3.4vw, 48px);
+
+      font-weight: 600;
+
+      line-height: 1.05;
+
+      letter-spacing: -.035em;
+    }
+
+    .project-tile-subtitle {
+      margin-top: 8px;
+
+      font-size:
+        clamp(17px, 1.6vw, 21px);
+
+      line-height: 1.3;
+
+      letter-spacing: -.015em;
+
+      opacity: .8;
+    }
+
+    .project-tile-button {
+      margin-top: 20px;
+
+      display: inline-flex;
+      align-items: center;
+
+      height: 38px;
+
+      padding: 0 18px;
+
+      border-radius: 999px;
+
+      background: var(--tile-fg, #1d1d1f);
+      color: var(--tile-bg, #fff);
+
+      font-size: 14px;
+      font-weight: 500;
+
+      transition:
+        transform .2s ease,
+        opacity .2s ease;
+    }
+
+    .project-tile:hover .project-tile-button {
+      opacity: .85;
+    }
+
+    .project-tile:active .project-tile-button {
+      transform: scale(.97);
+    }
+
+
+    /* MEDIA */
+
+    .project-tile-media {
+      position: absolute;
+      z-index: 1;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: var(--media-top, 0);
+
+      width: 100%;
+      height: calc(100% - var(--media-top, 0px));
+
+      object-fit: cover;
+
+      transition:
+        transform .9s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .project-tile:hover .project-tile-media {
+      transform: scale(1.03);
+    }
+
+
+    /* TILE THEMES */
+
+    .tile-medixy {
+      --tile-bg: #0c0514;
+      --tile-fg: #fff;
+    }
+
+    .tile-indor {
+      --tile-bg: #fff;
+      --tile-fg: #1d1d1f;
+    }
+
+    /* Indor: website screenshot as a "screen" peeking up. */
+
+    .tile-indor .project-tile-media {
+      left: 9%;
+      right: 9%;
+      top: 44%;
+
+      width: auto;
+      height: auto;
+
+      object-position: 50% 0;
+
+      border-radius: 14px 14px 0 0;
+
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
+
+      transform-origin: 50% 100%;
+    }
+
+    .tile-sword {
+      --tile-bg: #000;
+      --tile-fg: #fff;
+    }
+
+    /* Motion Sword: app icon centered in the lower part. */
+
+    .tile-sword .project-tile-media {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: 14%;
+
+      width: 38%;
+      height: auto;
+
+      aspect-ratio: 1;
+
+      object-fit: contain;
+
+      translate: -50% 0;
+    }
+
+    .tile-shunli {
+      --tile-bg: #000;
+      --tile-fg: #fff;
+
+      --media-top: 30%;
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 100px;
+    }
+
+    .about-large {
+      font-size:
+        clamp(42px, 5.5vw, 72px);
+
+      line-height: .97;
+
+      letter-spacing: -.07em;
+
+      font-weight: 500;
+    }
+
+    .about-large span {
+      color: #b7b7bc;
+    }
+
+    .about-right {
+      max-width: 450px;
+    }
+
+    .about-text {
+      font-size: 19px;
+
+      line-height: 1.45;
+
+      letter-spacing: -.025em;
+
+      margin-bottom: 45px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+    }
+
+    .skill {
+      padding: 9px 13px;
+
+      background: #fff;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 999px;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================================================
+       EXPERIENCE
+    ========================================================= */
+
+    .experience-list {
+      border-top:
+        1px solid var(--line);
+    }
+
+    .experience-row {
+      display: grid;
+
+      grid-template-columns:
+        130px
+        1fr
+        180px;
+
+      gap: 40px;
+
+      padding: 27px 0;
+
+      border-bottom:
+        1px solid var(--line);
+
+      font-size: 14px;
+    }
+
+    .experience-date {
+      color: var(--gray);
+    }
+
+    .experience-role {
+      font-weight: 500;
+    }
+
+    .experience-company {
+      text-align: right;
+      color: var(--gray);
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact {
+      padding:
+        170px 0
+        100px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 120px;
+      align-items: start;
+    }
+
+    .contact-left {
+      padding-top: 0;
+    }
+
+    .contact-title {
+      margin-top: 0;
+      max-width: 700px;
+      font-size:
+        clamp(64px, 8vw, 120px);
+      line-height: .86;
+      letter-spacing: -.085em;
+      font-weight: 600;
+    }
+
+    .contact-title span {
+      color: #bdbdc2;
+    }
+
+    .contact-note {
+      max-width: 330px;
+
+      margin-top: 38px;
+
+      color: var(--gray);
+
+      font-size: 15px;
+
+      line-height: 1.5;
+    }
+
+
+    /* =========================================================
+       CONTACT FORM
+    ========================================================= */
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+
+      padding: 20px 0;
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+    .form-field span {
+      color: var(--gray);
+
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .04em;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+
+      border: 0;
+      outline: 0;
+
+      resize: none;
+
+      background: transparent;
+
+      color: #111;
+
+      font-family: inherit;
+
+      font-size: 17px;
+
+      letter-spacing: -.02em;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #b0b0b5;
+    }
+
+    .form-field textarea {
+      min-height: 120px;
+    }
+
+    .form-field:focus-within {
+      border-color: #111;
+    }
+
+    .contact-submit {
+      align-self: flex-start;
+
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+
+      margin-top: 30px;
+
+      padding: 15px 20px;
+
+      border: 0;
+
+      border-radius: 999px;
+
+      background: #111;
+
+      color: #fff;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+      transition:
+        transform .25s ease,
+        background .25s ease;
+    }
+
+    .contact-submit span {
+      font-size: 17px;
+
+      transition:
+        transform .25s ease;
+    }
+
+    .contact-submit:hover {
+      transform: translateY(-3px);
+      background: #292929;
+    }
+
+    .contact-submit:hover span {
+      transform:
+        translate(3px, -3px);
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .footer {
+      padding:
+        25px 0
+        35px;
+
+      border-top:
+        1px solid var(--line);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--gray);
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(28px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .container {
+        width:
+          calc(100% - 28px);
+      }
+
+
+      /* NAV */
+
+      .nav {
+        top: 14px;
+
+        height: 48px;
+
+        max-width:
+          calc(100% - 28px);
+      }
+
+      .nav-links {
+        gap: 1px;
+      }
+
+      .nav-links a {
+        height: 40px;
+
+        padding: 0 11px;
+
+        font-size: 12px;
+      }
+
+      .nav-active {
+        top: 3px;
+
+        height:
+          calc(100% - 6px);
+      }
+
+
+      /* HERO */
+
+      .hero {
+        height: 100svh;
+
+        min-height: 560px;
+
+        padding: 0;
+      }
+
+      .hero-title {
+        font-size:
+          clamp(49px, 16.5vw, 105px);
+
+        line-height: .82;
+      }
+
+      .hero-kicker {
+        margin-bottom: 27px;
+        font-size: 10px;
+      }
+
+      .hero-note {
+        margin-top: 32px;
+        font-size: 15px;
+      }
+
+      .hero-next {
+        bottom: 22px;
+      }
+
+
+      /* SECTIONS */
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+
+      /* PROJECTS */
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-tile {
+        height: 500px;
+
+        padding-top: 40px;
+
+        border-radius: 24px;
+      }
+
+
+      /* ABOUT */
+
+      .about {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .about-large {
+        font-size: 46px;
+      }
+
+
+      /* EXPERIENCE */
+
+      .experience-row {
+        grid-template-columns:
+          80px
+          1fr;
+
+        gap: 15px;
+      }
+
+      .experience-company {
+        grid-column: 2;
+
+        text-align: left;
+      }
+
+
+      /* CONTACT */
+
+      .contact {
+        padding:
+          110px 0
+          80px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+      }
+
+      .contact-title {
+        font-size:
+          clamp(58px, 16vw, 90px);
+      }
+
+      .contact-note {
+        margin-top: 28px;
+      }
+
+
+      /* FOOTER */
+
+      .footer {
+        flex-direction: column;
+        gap: 9px;
+      }
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 480px) {
+
+      .nav {
+        width:
+          calc(100% - 24px);
+      }
+
+      .nav-links {
+        width: 100%;
+
+        justify-content: center;
+      }
+
+      .nav-links a {
+        padding: 0 9px;
+
+        font-size: 11px;
+      }
+
+      .hero-title {
+        font-size:
+          15.7vw;
+      }
+
+      .hero-kicker {
+        font-size: 9px;
+        gap: 7px;
+      }
+
+      .hero-note {
+        font-size: 14px;
+      }
+
+      .hero-next {
+        font-size: 10px;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+  </style>
 </head>
+
+
 <body>
-  <div class="cursor-glow"></div>
 
-  <header class="nav">
-    <a class="logo" href="#top">EZ<span>.</span></a>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-    </nav>
-    <a class="nav-contact" href="mailto:katyazubareva.mail@gmail.com">Let's talk <span>↗</span></a>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-top reveal">
-        <span class="eyebrow">PORTFOLIO / 2026</span>
-        <span class="status"><i></i> Available for opportunities</span>
-      </div>
+  <!-- ======================================================
+       NAVIGATION
+  ====================================================== -->
 
-      <div class="hero-title reveal">
-        <h1>Ekaterina<br><em>Zubareva.</em></h1>
-        <div class="hero-side">
-          <p>ML Engineer & Backend Developer building intelligent products, interfaces and interactive systems.</p>
-          <a href="#projects" class="circle-link" aria-label="View projects">↓</a>
+  <nav
+    class="nav"
+    aria-label="Main navigation"
+  >
+
+    <div class="nav-links">
+
+      <span
+        class="nav-active"
+        aria-hidden="true"
+      ></span>
+
+      <a
+        href="#work"
+        data-section="work"
+      >
+        Work
+      </a>
+
+      <a
+        href="#about"
+        data-section="about"
+      >
+        About
+      </a>
+
+      <a
+        href="#experience"
+        data-section="experience"
+      >
+        Experience
+      </a>
+
+      <a
+        href="#contact"
+        data-section="contact"
+      >
+        Contact
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <main>
+
+
+    <!-- ======================================================
+         HERO
+    ====================================================== -->
+
+    <section
+      class="hero"
+      id="hero"
+    >
+
+      <div class="container hero-inner">
+
+        <div class="hero-content">
+
+          <h1 class="hero-title">
+
+            <span>
+              EKATERINA
+            </span>
+
+            <span>
+              ZUBAREVA
+            </span>
+
+          </h1>
+
+
+          <p class="hero-note">
+            ML Engineer · NLP, LLM & Computer Vision
+          </p>
+
+
+          <a
+            class="resume-button"
+            href="/assets/Resume.pdf"
+            download="Ekaterina-Zubareva-Resume.pdf"
+          >
+
+            <img
+              src="/assets/Resume_icon.svg"
+              alt=""
+              width="16"
+              height="16"
+            >
+
+            Download resume
+
+          </a>
+
         </div>
+
       </div>
 
-      <div class="hero-bottom reveal">
-        <span>Python · AI/ML · Backend · Computer Vision</span>
-        <span>ITMO University · Software Engineering</span>
-      </div>
     </section>
 
-    <section class="marquee-wrap">
-      <div class="marquee">
-        <span>AI & MACHINE LEARNING</span><b>✦</b>
-        <span>BACKEND DEVELOPMENT</span><b>✦</b>
-        <span>COMPUTER VISION</span><b>✦</b>
-        <span>INTERACTIVE SYSTEMS</span><b>✦</b>
-        <span>AI & MACHINE LEARNING</span><b>✦</b>
-        <span>BACKEND DEVELOPMENT</span><b>✦</b>
+
+
+    <!-- ======================================================
+         WORK
+    ====================================================== -->
+
+    <section
+      class="section projects"
+      id="work"
+    >
+
+      <div class="container">
+
+
+        <div class="section-header">
+
+          <h2 class="section-title">
+            Selected work
+          </h2>
+
+          <span class="section-number">
+            01 — 04
+          </span>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+        <!-- MEDIXY -->
+
+        <a
+          class="project-tile tile-medixy reveal"
+          href="/pages/medixy.html"
+        >
+
+          <div class="project-tile-text">
+
+            <h3 class="project-tile-name">
+              Medixy
+            </h3>
+
+            <p class="project-tile-subtitle">
+              LLM answers grounded in sources.
+            </p>
+
+            <span class="project-tile-button">
+              View project
+            </span>
+
+          </div>
+
+          <video
+            class="project-tile-media"
+            src="/assets/Medixy_anim.mov"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-hidden="true"
+          ></video>
+
+        </a>
+
+
+        <!-- INDOR -->
+
+        <a
+          class="project-tile tile-indor reveal"
+          href="/pages/indor-design.html"
+        >
+
+          <div class="project-tile-text">
+
+            <h3 class="project-tile-name">
+              Indor
+            </h3>
+
+            <p class="project-tile-subtitle">
+              Interior styles matched with embeddings.
+            </p>
+
+            <span class="project-tile-button">
+              View project
+            </span>
+
+          </div>
+
+          <img
+            class="project-tile-media"
+            src="/assets/indor_cover.jpg"
+            alt=""
+            loading="lazy"
+          >
+
+        </a>
+
+
+        <!-- MOTION SWORD -->
+
+        <a
+          class="project-tile tile-sword reveal"
+          href="/pages/motion-sword.html"
+        >
+
+          <div class="project-tile-text">
+
+            <h3 class="project-tile-name">
+              Motion Sword
+            </h3>
+
+            <p class="project-tile-subtitle">
+              Webcam pose tracking for real-time play.
+            </p>
+
+            <span class="project-tile-button">
+              View project
+            </span>
+
+          </div>
+
+          <img
+            class="project-tile-media"
+            src="/assets/03-Free.png"
+            alt=""
+            loading="lazy"
+          >
+
+        </a>
+
+
+        <!-- SHUNLI -->
+
+        <a
+          class="project-tile tile-shunli reveal"
+          href="/pages/shunli.html"
+        >
+
+          <div class="project-tile-text">
+
+            <h3 class="project-tile-name">
+              Shunli
+            </h3>
+
+            <p class="project-tile-subtitle">
+              Tone tutor in Telegram.
+            </p>
+
+            <span class="project-tile-button">
+              View project
+            </span>
+
+          </div>
+
+          <img
+            class="project-tile-media"
+            src="/assets/shunli_cover.jpg"
+            alt=""
+            loading="lazy"
+          >
+
+        </a>
+
+
+        </div>
+
       </div>
+
     </section>
 
-    <section class="intro section">
-      <div class="section-label">01 / ABOUT</div>
-      <div class="intro-content">
-        <h2>I build digital products where <span>technology</span> meets interaction.</h2>
-        <p>I work across ML, backend development, data and interactive systems. My projects combine practical engineering with product thinking, from personalized learning systems to real-time computer vision.</p>
+
+
+    <!-- ======================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="about"
+    >
+
+      <div class="container about">
+
+
+        <div class="about-large reveal">
+
+          A model is not just
+
+          <span>
+            how well it scores.
+          </span>
+
+          <br>
+          <br>
+
+          It's how it
+
+          <span>
+            works.
+          </span>
+
+        </div>
+
+
+        <div class="about-right reveal">
+
+          <p class="about-text">
+
+            ML engineer with a background
+            in product design and software.
+
+            <br>
+            <br>
+
+            I work across NLP, LLM systems,
+            computer vision and model
+            evaluation.
+
+          </p>
+
+
+          <div class="skills">
+
+            <span class="skill">
+              Deep Learning
+            </span>
+
+            <span class="skill">
+              NLP / LLM
+            </span>
+
+            <span class="skill">
+              Computer Vision
+            </span>
+
+            <span class="skill">
+              Evaluation
+            </span>
+
+            <span class="skill">
+              RAG Systems
+            </span>
+
+            <span class="skill">
+              Fine-tuning
+            </span>
+
+            <span class="skill">
+              Data Pipelines
+            </span>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
 
-    <section id="projects" class="section projects">
-      <div class="section-head">
-        <div class="section-label">02 / SELECTED PROJECTS</div>
-        <span>03 projects</span>
+
+
+    <!-- ======================================================
+         EXPERIENCE
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="experience"
+    >
+
+      <div class="container">
+
+
+        <div class="section-header">
+
+          <h2 class="section-title">
+            Experience
+          </h2>
+
+          <span class="section-number">
+            2022 — 2026
+          </span>
+
+        </div>
+
+
+        <div class="experience-list reveal">
+
+
+          <div class="experience-row">
+
+            <div class="experience-date">
+              2024 — now
+            </div>
+
+            <div class="experience-role">
+              ML Engineer
+            </div>
+
+            <div class="experience-company">
+              Freelance
+            </div>
+
+          </div>
+
+
+          <div class="experience-row">
+
+            <div class="experience-date">
+              2025 — 2026
+            </div>
+
+            <div class="experience-role">
+              ML Engineer
+            </div>
+
+            <div class="experience-company">
+              Shunli App
+            </div>
+
+          </div>
+
+
+          <div class="experience-row">
+
+            <div class="experience-date">
+              2025 — 2025
+            </div>
+
+            <div class="experience-role">
+              AI/ML Evaluation Specialist
+            </div>
+
+            <div class="experience-company">
+              Skolkovo &amp; Sber
+            </div>
+
+          </div>
+
+
+          <div class="experience-row">
+
+            <div class="experience-date">
+              2022 — 2025
+            </div>
+
+            <div class="experience-role">
+              Backend developer
+            </div>
+
+            <div class="experience-company">
+              ITMO University
+            </div>
+
+          </div>
+
+
+        </div>
+
       </div>
 
-      <article class="project project-dark reveal">
-        <div class="project-number">01</div>
-        <div class="project-info">
-          <div>
-            <span class="project-type">COMPUTER VISION · GAME</span>
-            <h3>Interactive<br>Tracking Game</h3>
-          </div>
-          <p>A non-VR interactive game using real-time motion tracking. The project connects computer vision, game logic and a custom wireless controller.</p>
-          <div class="tags"><span>Python</span><span>MediaPipe</span><span>Unreal Engine</span><span>Arduino</span></div>
-        </div>
-        <div class="project-visual sword-visual">
-          <div class="orb"></div>
-          <div class="sword-line"></div>
-          <span>REAL-TIME<br>TRACKING</span>
-        </div>
-      </article>
-
-      <article class="project project-light reveal">
-        <div class="project-number">02</div>
-        <div class="project-info">
-          <div>
-            <span class="project-type">AI · PRODUCT</span>
-            <h3>Medical<br>AI Assistant</h3>
-          </div>
-          <p>An AI service concept for working with medical knowledge and user queries. Information retrieval is built around a RAG approach.</p>
-          <div class="tags"><span>Python</span><span>NLP</span><span>RAG</span><span>LLM</span><span>API</span></div>
-        </div>
-        <div class="project-visual medical-visual">
-          <div class="medical-card">
-            <small>AI ASSISTANT</small>
-            <strong>Knowledge<br>retrieval</strong>
-            <div class="scan"></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="project project-orange reveal">
-        <div class="project-number">03</div>
-        <div class="project-info">
-          <div>
-            <span class="project-type">DEVELOPER TOOL · PLATFORM</span>
-            <h3>Frontend<br>Prototyping</h3>
-          </div>
-          <p>A modular platform for rapidly creating frontend applications with reusable UI components, API integration and automated deployment.</p>
-          <div class="tags"><span>Python</span><span>API</span><span>Docker</span><span>CI/CD</span><span>Git</span></div>
-        </div>
-        <div class="project-visual code-visual">
-          <div class="code-window">
-            <span>01</span><span>02</span><span>03</span><span>04</span>
-            <code><b>component</b>(<i>"Button"</i>)<br>  → reusable<br>  → scalable<br>  → deploy</code>
-          </div>
-        </div>
-      </article>
     </section>
 
-    <section id="experience" class="section experience">
-      <div class="section-label">03 / EXPERIENCE</div>
-      <div class="timeline">
-        <div class="job reveal">
-          <div class="date">05.2025 — 06.2026</div>
-          <div class="job-main">
-            <span>01</span>
-            <h3>ML Engineer</h3>
-            <p class="company">Shunli App</p>
-            <p>Developed ML components that adapt learning to user actions and results. Worked with interaction data, response analysis, NLP for Chinese text, personalized recommendations and API integration with backend systems.</p>
+
+
+    <!-- ======================================================
+         CONTACT
+    ====================================================== -->
+
+    <section
+      class="contact"
+      id="contact"
+    >
+
+      <div class="container">
+
+        <div class="contact-layout">
+
+
+          <div class="contact-left">
+
+            <h2 class="contact-title reveal">
+
+              Let's build
+              <br>
+
+              <span>
+                something useful.
+              </span>
+
+            </h2>
+
+
+            <p class="contact-note reveal">
+
+              Have a model, dataset or
+              ML problem? Tell me a little
+              about it.
+
+            </p>
+
           </div>
+
+
+          <!-- FORM -->
+
+          <form
+            class="contact-form reveal"
+            action="https://formspree.io/f/xppweako"
+            method="POST"
+          >
+
+
+            <label class="form-field">
+
+              <span>
+                Name
+              </span>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              >
+
+            </label>
+
+
+            <label class="form-field">
+
+              <span>
+                Email
+              </span>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+
+            </label>
+
+
+            <label class="form-field">
+
+              <span>
+                Message
+              </span>
+
+              <textarea
+                name="message"
+                placeholder="Tell me about your ML project..."
+                rows="5"
+                required
+              ></textarea>
+
+            </label>
+
+
+            <button
+              class="contact-submit"
+              type="submit"
+            >
+
+              Send message
+
+            </button>
+
+
+          </form>
+
         </div>
-        <div class="job reveal">
-          <div class="date">03.2025 — 08.2025</div>
-          <div class="job-main">
-            <span>02</span>
-            <h3>AI/ML Evaluation Specialist</h3>
-            <p class="company">Skolkovo Institute</p>
-            <p>Created test tasks and evaluation datasets for AI models, structured data for response-quality assessment and analyzed large datasets.</p>
-          </div>
-        </div>
-        <div class="job reveal">
-          <div class="date">04.2022 — 08.2023</div>
-          <div class="job-main">
-            <span>03</span>
-            <h3>Backend Developer</h3>
-            <p class="company">ITMO University</p>
-            <p>Built an interactive Telegram bot with Python, FastAPI and python-telegram-bot. Implemented commands, notifications, learning materials, SQL/PostgreSQL, Docker and CI/CD.</p>
-          </div>
-        </div>
+
       </div>
+
     </section>
 
-    <section id="skills" class="section skills">
-      <div class="section-label">04 / TOOLKIT</div>
-      <div class="skills-grid">
-        <div class="skill-block reveal">
-          <span>01</span>
-          <h3>Backend</h3>
-          <p>Python · FastAPI · REST API · HTTP · JSON</p>
-        </div>
-        <div class="skill-block reveal">
-          <span>02</span>
-          <h3>Data & ML</h3>
-          <p>NumPy · Pandas · NLP · RAG · LLM · embeddings · data preparation</p>
-        </div>
-        <div class="skill-block reveal">
-          <span>03</span>
-          <h3>Databases</h3>
-          <p>PostgreSQL · SQL</p>
-        </div>
-        <div class="skill-block reveal">
-          <span>04</span>
-          <h3>DevOps & Tools</h3>
-          <p>Docker · Git · CI/CD · Linux CLI</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="education section">
-      <div class="section-label">05 / EDUCATION</div>
-      <div class="education-row reveal">
-        <div>
-          <span>2021 — 2026</span>
-          <h2>ITMO University</h2>
-        </div>
-        <p>Software Engineering</p>
-      </div>
-    </section>
-
-    <section class="contact section">
-      <div class="contact-inner reveal">
-        <span class="eyebrow">HAVE A PROJECT IN MIND?</span>
-        <h2>Let's make<br><em>something useful.</em></h2>
-        <a class="big-mail" href="mailto:katyazubareva.mail@gmail.com">katyazubareva.mail@gmail.com <span>↗</span></a>
-      </div>
-    </section>
   </main>
 
+
+
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+
   <footer>
-    <span>© 2026 Ekaterina Zubareva</span>
-    <div>
-      <a href="https://github.com/KatyaZubareva" target="_blank">GitHub ↗</a>
-      <a href="https://katyazubareva.github.io/" target="_blank">Portfolio ↗</a>
+
+    <div class="container footer">
+
+      <span>
+        © 2026 Ekaterina Zubareva
+      </span>
+
+      <span>
+        Located in Moscow
+      </span>
+
     </div>
+
   </footer>
 
-  <script src="script.js"></script>
+
+
+  <script>
+
+    /* =========================================================
+       HERO INTRO
+
+       Splits each line of the hero title into letters
+       for the blur-in animation.
+    ========================================================= */
+
+    const heroTitle =
+      document.querySelector(".hero-title");
+
+    const heroNote =
+      document.querySelector(".hero-note");
+
+    function splitIntoLetters(line) {
+
+      const letters =
+        [...line.textContent.trim().replace(/\s+/g, " ")];
+
+      const count =
+        letters.filter(letter => letter !== " ").length;
+
+      let index = 0;
+
+      line.textContent = "";
+      line.style.setProperty("--n", count);
+
+      letters.forEach(letter => {
+
+        // Spaces stay plain text so words can wrap.
+        if (letter === " ") {
+          line.append(" ");
+          return;
+        }
+
+        const char =
+          document.createElement("span");
+
+        char.className = "char";
+        char.textContent = letter;
+        char.style.setProperty("--i", index++);
+
+        line.append(char);
+
+      });
+
+      line.classList.add("intro-line", "is-split");
+
+    }
+
+    if (heroTitle) {
+
+      heroTitle.setAttribute(
+        "aria-label",
+        heroTitle.textContent.replace(/\s+/g, " ").trim()
+      );
+
+      heroTitle.querySelectorAll(":scope > span").forEach(line => {
+
+        line.setAttribute("aria-hidden", "true");
+
+        splitIntoLetters(line);
+
+      });
+
+    }
+
+    if (heroNote) {
+
+      heroNote.setAttribute(
+        "aria-label",
+        heroNote.textContent.replace(/\s+/g, " ").trim()
+      );
+
+      splitIntoLetters(heroNote);
+
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    const nav = document.querySelector(".nav");
+    const navLinks = document.querySelector(".nav-links");
+    const navActive = document.querySelector(".nav-active");
+
+    const navItems = [
+      ...document.querySelectorAll(".nav-links a")
+    ];
+
+
+    /*
+      Добавляем / убираем состояние scrolled.
+
+      threshold = 20px
+
+      То есть сразу после того,
+      как пользователь немного прокрутил страницу,
+      появляется стеклянная плашка.
+    */
+
+    function updateNavVisibility() {
+
+      if (window.scrollY > 20) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+
+    }
+
+
+    function moveNavActive(link) {
+
+      if (!link) {
+
+        navActive.style.opacity = "0";
+
+        navItems.forEach(item => {
+
+          item.classList.remove("active");
+          item.removeAttribute("aria-current");
+
+        });
+
+        return;
+      }
+
+
+      const linkRect =
+        link.getBoundingClientRect();
+
+      const parentRect =
+        navLinks.getBoundingClientRect();
+
+
+      const x =
+        linkRect.left -
+        parentRect.left;
+
+
+      navActive.style.width =
+        `${linkRect.width}px`;
+
+      navActive.style.transform =
+        `translateX(${x}px)`;
+
+      navActive.style.opacity = "1";
+
+
+      navItems.forEach(item => {
+
+        const active =
+          item === link;
+
+        item.classList.toggle(
+          "active",
+          active
+        );
+
+
+        if (active) {
+
+          item.setAttribute(
+            "aria-current",
+            "page"
+          );
+
+        } else {
+
+          item.removeAttribute(
+            "aria-current"
+          );
+
+        }
+
+      });
+
+    }
+
+
+    /* =========================================================
+       NAV CLICK
+    ========================================================= */
+
+    navItems.forEach(link => {
+
+      link.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+
+          const target =
+            document.querySelector(
+              link.getAttribute("href")
+            );
+
+
+          moveNavActive(link);
+
+
+          /*
+            Если пользователь нажал
+            на пункт навигации ещё до скролла,
+            стеклянная плашка появляется.
+          */
+
+          nav.classList.add("scrolled");
+
+
+          if (target) {
+
+            target.scrollIntoView({
+
+              behavior: "smooth",
+
+              block: "start"
+
+            });
+
+          }
+
+        }
+      );
+
+    });
+
+
+    /* =========================================================
+       CURRENT SECTION
+    ========================================================= */
+
+    const sections = [
+
+      document.querySelector("#work"),
+      document.querySelector("#about"),
+      document.querySelector("#experience"),
+      document.querySelector("#contact")
+
+    ].filter(Boolean);
+
+
+    let scrollTicking = false;
+
+
+    function updateCurrentSection() {
+
+      const marker =
+        window.scrollY +
+        window.innerHeight * .45;
+
+
+      let currentSection = null;
+
+
+      sections.forEach(section => {
+
+        const sectionTop =
+          section.getBoundingClientRect().top +
+          window.scrollY;
+
+
+        if (sectionTop <= marker) {
+
+          currentSection = section;
+
+        }
+
+      });
+
+
+      /*
+        На самом верху нет активного пункта.
+      */
+
+      if (!currentSection) {
+
+        moveNavActive(null);
+
+        return;
+
+      }
+
+
+      const currentLink =
+        navItems.find(
+          link =>
+            link.dataset.section ===
+            currentSection.id
+        );
+
+
+      if (currentLink) {
+
+        moveNavActive(currentLink);
+
+      }
+
+    }
+
+
+    /* =========================================================
+       SCROLL
+    ========================================================= */
+
+    window.addEventListener(
+
+      "scroll",
+
+      () => {
+
+        /*
+          Отдельно контролируем
+          появление стеклянной навигации.
+        */
+
+        updateNavVisibility();
+
+
+        /*
+          Обновляем активный пункт
+          через requestAnimationFrame.
+        */
+
+        if (!scrollTicking) {
+
+          window.requestAnimationFrame(() => {
+
+            updateCurrentSection();
+
+            scrollTicking = false;
+
+          });
+
+          scrollTicking = true;
+
+        }
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    /* =========================================================
+       INITIAL NAV STATE
+    ========================================================= */
+
+    function updateInitialNav() {
+
+      /*
+        Проверяем начальное положение страницы.
+      */
+
+      updateNavVisibility();
+
+
+      /*
+        Если открыта страница
+        с hash (#work, #about...)
+      */
+
+      if (window.location.hash) {
+
+        const link =
+          navItems.find(
+            item =>
+              item.getAttribute("href") ===
+              window.location.hash
+          );
+
+
+        if (link) {
+
+          moveNavActive(link);
+
+          nav.classList.add("scrolled");
+
+          return;
+
+        }
+
+      }
+
+
+      /*
+        На самом первом экране:
+        навигация без активной капсулы.
+      */
+
+      moveNavActive(null);
+
+    }
+
+
+    window.addEventListener(
+      "load",
+      updateInitialNav
+    );
+
+
+    /* =========================================================
+       RESIZE
+    ========================================================= */
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        const activeLink =
+          navItems.find(
+            link =>
+              link.classList.contains("active")
+          );
+
+
+        if (activeLink) {
+
+          moveNavActive(activeLink);
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    const revealObserver =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: .12
+        }
+
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => {
+
+        revealObserver.observe(el);
+
+      });
+
+
+    /* =========================================================
+       FORM SUBMIT STATE
+    ========================================================= */
+
+    const contactForm =
+      document.querySelector(
+        ".contact-form"
+      );
+
+
+    if (contactForm) {
+
+      contactForm.addEventListener(
+
+        "submit",
+
+        async event => {
+
+          event.preventDefault();
+
+
+          const button =
+            contactForm.querySelector(
+              ".contact-submit"
+            );
+
+
+          const originalText =
+            button.innerHTML;
+
+
+          button.disabled = true;
+
+          button.innerHTML =
+            "Sending...";
+
+
+          try {
+
+            const response =
+              await fetch(
+                contactForm.action,
+                {
+                  method: "POST",
+
+                  body:
+                    new FormData(
+                      contactForm
+                    ),
+
+                  headers: {
+                    "Accept":
+                      "application/json"
+                  }
+                }
+              );
+
+
+            if (response.ok) {
+
+              contactForm.innerHTML = `
+
+                <div style="
+                  padding: 30px 0;
+                  border-top: 1px solid var(--line);
+                ">
+
+                  <div style="
+                    font-size: 24px;
+                    letter-spacing: -.04em;
+                    margin-bottom: 10px;
+                  ">
+
+                    Message sent
+
+                  </div>
+
+                  <div style="
+                    color: var(--gray);
+                    font-size: 14px;
+                    line-height: 1.5;
+                  ">
+
+                    Thanks. I'll get back to you soon.
+
+                  </div>
+
+                </div>
+
+              `;
+
+            } else {
+
+              throw new Error(
+                "Form submission failed"
+              );
+
+            }
+
+          } catch (error) {
+
+            button.disabled = false;
+
+            button.innerHTML =
+              originalText;
+
+
+            alert(
+              "Something went wrong. Please try again."
+            );
+
+          }
+
+        }
+
+      );
+
+    }
+
+  </script>
+
 </body>
 </html>
