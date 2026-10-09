@@ -126,6 +126,26 @@
 
 
 /* =========================================================
+   SEPARATOR — between Home and the projects
+========================================================= */
+
+.dock-separator {
+  flex: 0 0 1px;
+
+  align-self: center;
+
+  width: 1px;
+  height: calc(var(--icon) * .62);
+
+  margin: 0 1px;
+
+  border-radius: 1px;
+
+  background: rgba(255, 255, 255, .2);
+}
+
+
+/* =========================================================
    CURRENT PAGE INDICATOR
 ========================================================= */
 
@@ -222,6 +242,18 @@
 
   .dock-tooltip {
     display: none;
+  }
+}
+
+/* Narrow phones: five icons + separator still fit. */
+
+@media (max-width: 420px) {
+
+  .project-dock {
+    --icon: 52px;
+    --icon-max: 52px;
+
+    gap: 10px;
   }
 }
 

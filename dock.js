@@ -29,6 +29,11 @@
       name: "Motion Sword",
       href: "pages/motion-sword.html",
       icon: "assets/EchoBlade_icon.png"
+    },
+    {
+      name: "Shunli",
+      href: "pages/shunli.html",
+      icon: "assets/Shunli_icon.png"
     }
   ];
 
@@ -47,6 +52,10 @@
   const resolve =
     path => new URL(path, siteRoot).href;
 
+  // Bump when an icon file is replaced under the same name,
+  // so browsers fetch the new image instead of a cached one.
+  const ICON_VERSION = 2;
+
   function dockItem({ name, href, icon }, extraClass = "") {
 
     const url =
@@ -62,7 +71,7 @@
         aria-label="${name}"
         ${current ? 'aria-current="page"' : ""}
       >
-        <img src="${resolve(icon)}" alt="" draggable="false">
+        <img src="${resolve(icon)}?v=${ICON_VERSION}" alt="" draggable="false">
         <span class="dock-tooltip">${name}</span>
       </a>
     `;
@@ -83,6 +92,7 @@
       },
       "dock-home"
     )}
+    <span class="dock-separator" aria-hidden="true"></span>
     ${DOCK_PROJECTS.map(project => dockItem(project)).join("")}
   `;
 
