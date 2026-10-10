@@ -18,22 +18,22 @@
     {
       name: "Medixy",
       href: "pages/medixy.html",
-      icon: "assets/Medixy_icon.png"
+      icon: "assets/Medixy_icon.webp"
     },
     {
       name: "QuickFront",
       href: "pages/quickfront.html",
-      icon: "assets/QuickFront_icon.png"
+      icon: "assets/QuickFront_icon.webp"
     },
     {
       name: "Motion Sword",
       href: "pages/motion-sword.html",
-      icon: "assets/EchoBlade_icon.png"
+      icon: "assets/EchoBlade_icon.webp"
     },
     {
       name: "Shunli",
       href: "pages/shunli.html",
-      icon: "assets/Shunli_icon.png"
+      icon: "assets/Shunli_icon.webp"
     }
   ];
 
@@ -54,7 +54,7 @@
 
   // Bump when an icon file is replaced under the same name,
   // so browsers fetch the new image instead of a cached one.
-  const ICON_VERSION = 2;
+  const ICON_VERSION = 4;
 
   function dockItem({ name, href, icon }, extraClass = "") {
 
@@ -88,7 +88,7 @@
       {
         name: "Home",
         href: "index.html",
-        icon: "assets/Home_icon.png"
+        icon: "assets/Home_icon.webp"
       },
       "dock-home"
     )}

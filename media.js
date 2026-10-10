@@ -4,6 +4,10 @@
    Usage on a page (path relative to that page):
      <script src="media.js" defer></script>
 
+   Videos are written as <video data-src="…" poster="…">, so
+   nothing is downloaded until the video is about to scroll
+   into view. Off-screen videos pause to save data and battery.
+
    iOS blocks autoplay in Low Power Mode (even for muted
    videos) and draws its own play button over the video.
    This script hides that button, so the poster frame shows
@@ -36,38 +40,87 @@
   document.head.appendChild(style);
 
 
-  function playAll() {
+  const visible =
+    new Set();
 
-    videos.forEach(video => {
+  function load(video) {
 
-      if (!video.paused) {
-        return;
-      }
-
-      video.muted = true;
-
-      const attempt =
-        video.play();
-
-      if (attempt) {
-        attempt.catch(() => {});
-      }
-
-    });
+    if (video.dataset.src && !video.getAttribute("src")) {
+      video.src = video.dataset.src;
+    }
 
   }
 
-  playAll();
+  function play(video) {
+
+    if (!video.paused || !video.getAttribute("src")) {
+      return;
+    }
+
+    video.muted = true;
+
+    const attempt =
+      video.play();
+
+    if (attempt) {
+      attempt.catch(() => {});
+    }
+
+  }
+
+  function playVisible() {
+    visible.forEach(play);
+  }
+
+
+  if ("IntersectionObserver" in window) {
+
+    const observer =
+      new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+          const video =
+            entry.target;
+
+          if (entry.isIntersecting) {
+            visible.add(video);
+            load(video);
+            play(video);
+          } else {
+            visible.delete(video);
+            video.pause();
+          }
+
+        });
+
+      }, {
+        // Start loading a little before the video appears.
+        rootMargin: "300px 0px"
+      });
+
+    videos.forEach(video => observer.observe(video));
+
+  } else {
+
+    videos.forEach(video => {
+      load(video);
+      visible.add(video);
+    });
+
+    playVisible();
+
+  }
 
   // A tap counts as a user gesture, which lifts the
   // Low Power Mode restriction.
   ["touchend", "pointerup", "click", "keydown"].forEach(type => {
-    window.addEventListener(type, playAll, { passive: true });
+    window.addEventListener(type, playVisible, { passive: true });
   });
 
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {
-      playAll();
+      playVisible();
     }
   });
 
