@@ -459,7 +459,8 @@
 
     .js-intro .hero-title > span:not(.is-split),
     .js-intro .hero-note:not(.is-split),
-    .js-intro .resume-button {
+    .js-intro .resume-button,
+    .js-intro .hero-social {
       opacity: 0;
     }
 
@@ -520,6 +521,11 @@
         heroFadeIn 1.2s cubic-bezier(.33, 0, .2, 1) .9s forwards;
     }
 
+    .js-intro .hero-social {
+      animation:
+        heroFadeIn 1.2s cubic-bezier(.33, 0, .2, 1) 1.05s forwards;
+    }
+
     @keyframes heroFadeIn {
       from {
         opacity: 0;
@@ -537,6 +543,7 @@
       .js-intro .intro-line,
       .js-intro .hero-note,
       .js-intro .resume-button,
+      .js-intro .hero-social,
       .intro-line .char {
         opacity: 1;
         filter: none;
@@ -628,6 +635,55 @@
       box-shadow:
         0 4px 9px rgba(0,0,0,.16),
         inset 0 2px 3px rgba(0,0,0,.24);
+    }
+
+
+    /* =========================================================
+       SOCIAL LINKS — under the resume button
+    ========================================================= */
+
+    .hero-social {
+      margin-top: 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 22px;
+    }
+
+    .social-link {
+      display: flex;
+
+      color: #86868b;
+
+      transition:
+        color .25s ease,
+        transform .25s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .social-link svg {
+      width: 26px;
+      height: 26px;
+
+      fill: currentColor;
+    }
+
+    .social-link:hover {
+      color: #1d1d1f;
+
+      transform: translateY(-2px);
+    }
+
+    .social-link:active {
+      transform: scale(.94);
+    }
+
+    .social-link:focus-visible {
+      outline: 2px solid #0071e3;
+      outline-offset: 4px;
+
+      border-radius: 6px;
     }
 
 
@@ -1561,6 +1617,8 @@
           >
 
             <img
+              decoding="async"
+              loading="lazy"
               src="assets/Resume_icon.svg"
               alt=""
               width="16"
@@ -1570,6 +1628,43 @@
             Download resume
 
           </a>
+
+
+          <!-- Social links (TODO: replace the LinkedIn and YouTube placeholders) -->
+
+          <nav class="hero-social" aria-label="Social links">
+
+            <a
+              class="social-link"
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+
+            <a
+              class="social-link"
+              href="https://github.com/KatyaZubareva"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3"/></svg>
+            </a>
+
+            <a
+              class="social-link"
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener"
+              aria-label="YouTube"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+            </a>
+
+          </nav>
 
         </div>
 
@@ -1617,13 +1712,13 @@
 
               <video
                 class="project-media"
-                src="assets/Medixy_anim.mov"
+                data-src="assets/medixy.mp4"
                 poster="assets/posters/medixy.jpg"
                 autoplay
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-hidden="true"
               ></video>
 
@@ -1673,13 +1768,13 @@
 
               <video
                 class="project-media"
-                src="assets/quickfront.mp4?v=2"
+                data-src="assets/quickfront.mp4?v=2"
                 poster="assets/posters/quickfront.jpg"
                 autoplay
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-hidden="true"
               ></video>
 
@@ -1729,13 +1824,13 @@
 
               <video
                 class="project-media"
-                src="assets/motion_sword.mp4?v=2"
+                data-src="assets/motion_sword_card.mp4"
                 poster="assets/posters/motion_sword.jpg"
                 autoplay
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-hidden="true"
               ></video>
 
@@ -1784,6 +1879,7 @@
             <div class="project-card project-shunli">
 
               <img
+              decoding="async"
                 class="project-media"
                 src="assets/shunli_cover.jpg"
                 alt=""
@@ -2829,7 +2925,7 @@
 
   </script>
 
-  <script src="media.js" defer></script>
+  <script src="media.js?v=2" defer></script>
 
 </body>
 </html>
