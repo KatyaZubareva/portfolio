@@ -54,7 +54,7 @@
 
   // Bump when an icon file is replaced under the same name,
   // so browsers fetch the new image instead of a cached one.
-  const ICON_VERSION = 5;
+  const ICON_VERSION = 6;
 
   function dockItem({ name, href, icon }, extraClass = "") {
 
