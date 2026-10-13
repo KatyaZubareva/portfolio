@@ -612,6 +612,14 @@
         transform .8s cubic-bezier(.2,.8,.2,1);
     }
 
+    /* Diagrams must stay whole: fit inside the card and fill the
+       rest with the image's own background. */
+    .case-image img.fit-contain {
+      object-fit: contain;
+
+      background: #4e4e4e;
+    }
+
     .case-image:hover img {
       transform: scale(1.025);
     }
@@ -1858,8 +1866,9 @@
             <img
               decoding="async"
               loading="lazy"
-              src="../assets/Medixy_photo2.webp"
-              alt="Medixy screen"
+              src="../assets/EchoBlade_userflow.webp"
+              alt="EchoBlade user flow: main menu, loading, game screen, inventory, pause, death and victory screens"
+              class="fit-contain"
             >
 
           </div>
