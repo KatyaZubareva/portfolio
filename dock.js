@@ -26,8 +26,8 @@
       icon: "assets/QuickFront_icon.webp"
     },
     {
-      name: "Motion Sword",
-      href: "pages/motion-sword.html",
+      name: "EchoBlade",
+      href: "pages/echo-blade.html",
       icon: "assets/EchoBlade_icon.webp"
     },
     {
