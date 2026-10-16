@@ -612,6 +612,21 @@
         transform .8s cubic-bezier(.2,.8,.2,1);
     }
 
+    /* Wide diagrams (system flow) take the whole row and stay
+       whole instead of being cropped to the card. */
+    .case-image--wide {
+      grid-column: 1 / -1;
+
+      background: #fff;
+    }
+
+    .case-image.case-image--wide img {
+      height: auto;
+      min-height: 0;
+
+      object-fit: contain;
+    }
+
     .case-image:hover img {
       transform: scale(1.025);
     }
@@ -1468,30 +1483,13 @@
 
         <div class="image-grid">
 
-
-          <div class="case-image">
-
-            <img
-              decoding="async"
-              loading="lazy"
-              src="../assets/Medixy_photo1.webp"
-              alt="Medixy research"
-            >
-
-            <div class="image-caption">
-              Data
-            </div>
-
-          </div>
-
-
-          <div class="case-image">
+          <div class="case-image case-image--wide">
 
             <img
               decoding="async"
               loading="lazy"
-              src="../assets/Medixy_photo1.webp"
-              alt="Medixy user flow"
+              src="../assets/Systemflow_shunli.svg"
+              alt="Shunli system flow: Telegram client opens the MiniApp, the backend verifies the initData signature, delivers lessons, checks answers, saves progress and sends review reminders through the Telegram Bot API"
             >
 
             <div class="image-caption">
@@ -1499,6 +1497,8 @@
             </div>
 
           </div>
+
+        </div>
 
 
         </div>
