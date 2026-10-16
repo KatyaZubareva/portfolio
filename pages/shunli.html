@@ -612,19 +612,12 @@
         transform .8s cubic-bezier(.2,.8,.2,1);
     }
 
-    /* Wide diagrams (system flow) take the whole row and stay
-       whole instead of being cropped to the card. */
-    .case-image--wide {
-      grid-column: 1 / -1;
+    /* Diagrams must stay whole: fit inside the card and fill the
+       rest with the image's own background. */
+    .case-image img.fit-contain {
+      object-fit: contain;
 
       background: #fff;
-    }
-
-    .case-image.case-image--wide img {
-      height: auto;
-      min-height: 0;
-
-      object-fit: contain;
     }
 
     .case-image:hover img {
@@ -1483,13 +1476,30 @@
 
         <div class="image-grid">
 
-          <div class="case-image case-image--wide">
+          <div class="case-image">
 
             <img
               decoding="async"
               loading="lazy"
-              src="../assets/Systemflow_shunli.svg"
-              alt="Shunli system flow: Telegram client opens the MiniApp, the backend verifies the initData signature, delivers lessons, checks answers, saves progress and sends review reminders through the Telegram Bot API"
+              src="../assets/Medixy_photo1.webp"
+              alt="Medixy research"
+            >
+
+            <div class="image-caption">
+              Data
+            </div>
+
+          </div>
+
+
+          <div class="case-image">
+
+            <img
+              decoding="async"
+              loading="lazy"
+              src="../assets/Systemflow_shunli.svg?v=2"
+              alt="Shunli system flow: Telegram client opens the MiniApp, the backend verifies the initData signature, delivers lessons, checks answers, saves progress in the database and sends review reminders through the Telegram Bot API"
+              class="fit-contain"
             >
 
             <div class="image-caption">
